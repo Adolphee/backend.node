@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $.get( "http://localhost:3010/api/users/6", function(res) {
+    const HOST = "https://cepbruxelles.herokuapp.com";
+    $.get( `${HOST}/api/users/6`, function(res) {
         user = res[0];
         $("#fh5co-logo").html(user.firstname + " " + user.lastname);
     })
