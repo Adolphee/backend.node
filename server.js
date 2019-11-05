@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static('../public'));
+app.use(express.static('./public'));
 
 // The route to get all the different data and post data from and to database
 app.use('/api', api);
