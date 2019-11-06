@@ -31,7 +31,7 @@ app.use('/user', user);
 app.use('/contact', submitForm);
 
 app.get('/', (req, res) => {
-  res.sendFile('/public/index.html', 'index');
+  res.sendFile('/public/login.html', 'index');
 });
 
 app.listen(PORT, () => {
