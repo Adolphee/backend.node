@@ -1,0 +1,6 @@
+# Project exclude paths
+/server/node_modules/
+
+.idea/
+
+.DS_Store
