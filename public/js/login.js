@@ -7,7 +7,7 @@ $(document).ready(function(){
     $("#login-button").click(function(event){
         event.preventDefault();
 
-        const HOST = "http://localhost:3010";
+        const HOST = "https://cepbruxelles.herokuapp.com";
         $.post( `${HOST}/api/auth/`,
             {
                 "username": $('#username').val(),
