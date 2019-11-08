@@ -10,22 +10,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Communauté Evangélique Philadelphia" />
 	<meta name="keywords" content="Communauté Evangélique, Communauté Evangélique Philadelphia, Communauté Philadelphia, cep bruxelles, cep belgium, church brussels, christian church, gospel church, gospel" />
-	<meta name="template author" content="FreeHTML5.co" />
+	<meta name="template author" content="unknown" />
 	<meta name="final product author" content="Adolphe MKB" />
-
-	<!--
-  //////////////////////////////////////////////////////
-
-  FREE HTML5 TEMPLATE
-  DESIGNED & DEVELOPED by FreeHTML5.co
-
-  Website: 		http://freehtml5.co/
-  Email: 			info@freehtml5.co
-  Twitter: 		http://twitter.com/fh5co
-  Facebook: 		https://www.facebook.com/fh5co
-
-  //////////////////////////////////////////////////////
-  -->
 	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -39,7 +25,7 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
-
+	<link href="css/bootstrap.css" rel="stylesheet"	type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="css/login.css">
 </head>
@@ -47,20 +33,36 @@
 <div class="wrapper">
 	<div class="container">
 		<h1>CEP Brixelles</h1>
-		<form class="form" id="login-form">
-			<input id="username" type="text" placeholder="Username">
-			<input id="password" type="password" placeholder="Password">
-			<input type="button" id="login-button" value="Login"/><br/>
-			<input type="button" id="register-button" value="Register"/>
+		<form id="login-form" class="form">
+			<div id="register-fields" class="multi-collapse collapse form-group register-form">
+				<label id="label-firstname" for="firstname"></label>
+				<input id="firstname" type="text" placeholder="First name">
+				<label id="label-lastname" for="lastname"></label>
+				<input id="lastname" type="text" placeholder="Last name">
+				<label id="label-email" for="email"></label>
+				<input id="email" type="email" placeholder="Email address">
+			</div>
+			<div id="credentials" class="form-group">
+				<label id="label-username" for="username"></label>
+				<input id="username" type="text" placeholder="Username">
+				<label id="label-password" for="password"></label>
+				<input id="password" type="password" placeholder="Password">
+			</div>
+			<div id="login-buttons" class="multi-collapse collapse show form-group" >
+				<input id="login-button" class="btn btn-success" type="submit" value="Login"/><br/><br/>
+				<input id="register-button"
+					   data-toggle="collapse" type="button" value="Register"
+					   data-target=".multi-collapse" aria-expanded="false"
+					   aria-controls="register-fields register-buttons login-buttons"/>
+			</div>
+			<div id="register-buttons" class="multi-collapse collapse form-group register-form">
+				<input id="submit-register-button" class="btn btn-success" type="submit" value="Register"/><br/><br/>
+				<input id="cancel-register-button" data-toggle="collapse" type="button" value="Cancel" data-target=".multi-collapse" aria-expanded="false"
+					   aria-controls="register-fields register-buttons login-buttons"/>
+			</div>
+
 		</form>
-		<form class="form" id="register-form">
-			<input type="text" placeholder="First name">
-			<input type="text" placeholder="Last name">
-			<input type="email" placeholder="Email address">
-			<input type="text" placeholder="Username">
-			<input type="password" placeholder="Password">
-			<input type="button" id="submit-register-button" value="Register"/><br/><br/>
-			<input type="button" id="cancel-register-button" value="Cancel" href="./login.html"/>
+		<form class="form">
 		</form>
 	</div>
 	<ul class="bg-bubbles">
@@ -72,6 +74,6 @@
 <script src="js/shared/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
 <script src="js/shared/bootstrap.min.js"></script>
-<script src="js/login.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>

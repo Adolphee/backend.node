@@ -1,4 +1,4 @@
-$('#register-form').hide();
+//$('.register-form').hide();
 $(document).ready(function(){
     for(var i = 0; i <= 30; i++){
         $('.bg-bubbles').append('<li></li>');
@@ -26,24 +26,25 @@ $(document).ready(function(){
             .always(function() {
                 // TODO: Refresh a few elements or something idk
             });
-
-
     });
 
     $('#register-button').on('click', function(){
-        $('#login-form').hide();
-        $('#register-form').fadeIn(500);
+        let loginButtons = $('#login-buttons').hide();
+        loginButtons.removeClass("show");
     });
 
     $('#cancel-register-button').on('click',  function(){
-        $('#register-form').hide();
-        $('#login-form').fadeIn(1000);
+        let loginButtons = $('#login-buttons').show();
+        loginButtons.addClass("show");
     });
 
-    $('#submit-register-button').on('click',  function(){
+    $('#submit-register-button').on('click',  function(event){
+        event.preventDefault();
         $('form').fadeOut(500);
         $('.wrapper h1').html(`Coming Soon !!`);
         $('.wrapper').addClass('form-success');
     });
+/*
+ */
 });
 
