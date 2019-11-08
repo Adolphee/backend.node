@@ -19,34 +19,20 @@ router.get('/users', (req, res) => {
     });
 });
 
-router.route('/users/').post(function (req, res) {
-    let uitleendatum = req.body.uitleendatum,
-        einddatum = req.body.einddatum,
-        klant_id = req.body.klant_id,
-        lev_adres_id = req.body.lev_adres_id;
-    let query = `insert into bestellingen (uitleendatum,einddatum,klant_id,lev_adres_id) values ('${uitleendatum}','${einddatum}','${klant_id}','${lev_adres_id}');`;
-    db.query(query, (err, results) => {
+router.route('/auth/').post(function (req, res) {
+    let username = req.body.username,
+        password = req.body.password;
+    let query = `select * from users where username = '${username}' and password = '${password}'; `;
+    db.query(query, (err, results, fields) => {
         if (err) {
             console.log(err);
-            res.status(400).json(err); // Bad request
+            return;
         }
-        query = `SELECT LAST_INSERT_ID();`;
-        db.query(query, (err, results) => {
-            if (err) {
-                console.log(err);
-                res.status(400).json(err); //bad request
-            }
-            const bid = results[0]["LAST_INSERT_ID()"];
-            const nieuw = {
-                bestelling_id: bid,
-                uitleendatum: uitleendatum,
-                einddatum: einddatum,
-                klant_id: klant_id,
-                lev_adres_id: lev_adres_id
-            };
-            console.debug(nieuw);
-            res.status(201).json(nieuw); // created
-        });
+        if(results.length < 1){
+            return res.status(404).json("Invalid credentials.");
+        } else {
+            return res.send(results[0]);
+        }
     });
 });
 
