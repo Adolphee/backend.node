@@ -43,6 +43,12 @@ $(document).ready(function(){
         $('form').fadeOut(500);
         $('.wrapper h1').html(`Coming Soon !!`);
         $('.wrapper').addClass('form-success');
+
+        // TODO: Some validation
+
+        // TODO: Update field borders accordingly
+
+        // TODO: OK? --> Set cookies / Session & load Home Page
     });
 /*
  */
