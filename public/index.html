@@ -28,6 +28,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet"	type="text/css"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/loading-wheel.css">
 </head>
 <body>
 <div class="wrapper">
@@ -36,17 +37,17 @@
 		<form id="login-form" class="form">
 			<div id="register-fields" class="multi-collapse collapse form-group register-form">
 				<label id="label-firstname" for="firstname"></label>
-				<input id="firstname" type="text" placeholder="First name">
+				<input id="firstname" type="text" placeholder="First name" required>
 				<label id="label-lastname" for="lastname"></label>
-				<input id="lastname" type="text" placeholder="Last name">
+				<input id="lastname" type="text" placeholder="Last name" required>
 				<label id="label-email" for="email"></label>
-				<input id="email" type="email" placeholder="Email address">
+				<input id="email" type="email" placeholder="Email address" required>
 			</div>
 			<div id="credentials" class="form-group">
 				<label id="label-username" for="username"></label>
-				<input id="username" type="text" placeholder="Username">
+				<input id="username" type="text" placeholder="Username" required>
 				<label id="label-password" for="password"></label>
-				<input id="password" type="password" placeholder="Password">
+				<input id="password" type="password" placeholder="Password" required><span id="error_pwd" class="in-line text-danger"></span>
 			</div>
 			<div id="login-buttons" class="multi-collapse collapse show form-group" >
 				<input id="login-button" class="btn btn-success" type="submit" value="Login"/><br/><br/>
@@ -62,8 +63,8 @@
 			</div>
 
 		</form>
-		<form class="form">
-		</form>
+		<div id="loading-wheel" class="lds-css ng-scope"><div style="width:100%;height:100%" class="lds-magnify"><div><div><div></div><div></div></div></div></div>
+		</div>
 	</div>
 	<ul class="bg-bubbles">
 	</ul>

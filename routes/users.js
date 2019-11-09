@@ -29,7 +29,7 @@ router.route('/auth/').post(function (req, res) {
             return;
         }
         if(results.length < 1){
-            return res.status(404).json("Invalid credentials.");
+            return res.status(401).json("Invalid credentials.");
         } else {
             return res.send(results[0]);
         }
@@ -39,7 +39,7 @@ router.route('/auth/').post(function (req, res) {
 router.get('/users/:id', (req, res) => {
     let id = req.params.id;
     const query = "select * from users where id = ?;";
-    db.query(query, [id], (err, results, fields) => {
+    db.query(query, [id], (err, results) => {
         if (err) {
             console.log(err);
             res.status(500).json(err);
