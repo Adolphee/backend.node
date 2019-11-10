@@ -5,6 +5,9 @@
     padding: 0;
     font-weight: 300;
 }
+legend {
+    color: white;
+}
 body {
     font-family: 'Source Sans Pro', sans-serif;
     color: white;
@@ -244,4 +247,10 @@ form label {
 #loading-wheel {
     margin-left: 35%;
     display: none;
+}
+
+/*  Override bootstrap's btn-class */
+.btn {
+    font-weight: 300;
+    font-size: 18px;
 }
