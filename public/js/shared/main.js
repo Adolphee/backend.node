@@ -1,9 +1,7 @@
 ;(function () {
-	
+
+	const HOST = "https://cepbruxelles.herokuapp.com";
 	'use strict';
-
-
-
 	var isMobile = {
 		Android: function() {
 			return navigator.userAgent.match(/Android/i);

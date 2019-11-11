@@ -5,7 +5,11 @@ $(document).ajaxStart(() => {
     $('#loading-wheel').hide();
 });
 
+const HOST = "https://cepbruxelles.herokuapp.com";
+//const HOST = "http://localhost:3010";
+
 $(document).ready(function(){
+
     for(var i = 0; i <= 30; i++){
         $('.bg-bubbles').append('<li></li>');
     }
@@ -26,7 +30,6 @@ $(document).ready(function(){
     $("#login-button").click((event) => {
         event.preventDefault();
         if(validate(loginFields)) {
-            const HOST = "https://cepbruxelles.herokuapp.com";
             $.post( `${HOST}/api/auth/`,
                 {
                     "username": username.val(),
@@ -35,19 +38,17 @@ $(document).ready(function(){
                     $('.wrapper h1').html(`Welcome ${res.firstname} !!`);
                     $('.wrapper').addClass('form-success');
                 }).done(function() {
-                // TODO: Set cookies and open home page
-            })
-                .fail(function() {
+                    setCookie("username", username.val());
+                window.location.replace("./home.html");
+            }).fail(function() {
                     $('#label-username').empty().append("Invalid username or password.");
                     $('#login-form').show();
                     // TODO: Alert the user properly
-                })
-                .always(function() {
+                }).always(function() {
                     // TODO: Refresh a few elements or something idk
                 });
-        }
-
-    });
+            }
+        });
 
     $('#register-button').on('click', function(){
         validate(loginFields, true);
@@ -71,6 +72,26 @@ $(document).ready(function(){
             $('form').fadeOut(500);
             $('.wrapper h1').html(`Coming Soon !!`);
             $('.wrapper').addClass('form-success');
+            $.post( `${HOST}/api/users`,
+                {
+                    "username": username.val(),
+                    "password": password.val(),
+                    "firstname": firstname.val(),
+                    "lastname": lastname.val(),
+                    "email": email.val()
+                },function(res) {
+                    $('.wrapper h1').html(`Welcome ${res.firstname} !!`);
+                    $('.wrapper').addClass('form-success');
+                }).done(function(res) {
+                // TODO: Set cookies and open home page
+                setCookie("userid", res.id);
+                window.location.replace("./home.html");
+            }).fail(function(res) {
+                    $('#login-form').hide();
+                    // TODO: Alert the user properly
+                }).always(function() {
+                    // TODO: Refresh a few elements or something idk
+                });
         } else {
             // TODO: Send information for server-side validation
             legend.text("Register");
@@ -134,4 +155,33 @@ function validatePassword(input, password) {
 function validateEmail(input) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(input.val()).toLowerCase());
+}
+
+function setCookie(cname, cvalue, exdays = 1) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user == "") {
+        window.location.replace("home.html");
+    }
 }

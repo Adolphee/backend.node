@@ -12,8 +12,9 @@
   "dependencies": {
     "axios": "^0.18.1",
     "cors": "^2.8.5",
+    "ejs": "^2.7.1",
     "express": "^4.16.4",
-    "express-session": "^1.16.1",
+    "express-session": "^1.17.0",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.0"

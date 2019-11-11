@@ -1164,4 +1164,8 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   opacity: 0;
 }
 
+#logout a {
+  color: red;
+}
+
 /*# sourceMappingURL=style.css.map */
