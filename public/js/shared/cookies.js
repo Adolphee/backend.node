@@ -23,7 +23,5 @@ function getCookie(cname) {
 
 function checkCookie() {
     var user = getCookie("username");
-    if (user == "") {
-        window.location.replace("home.html");
-    }
+     return user == "";
 }

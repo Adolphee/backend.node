@@ -5,13 +5,15 @@ $(document).ajaxStart(() => {
     $('#loading-wheel').hide();
 });
 
+// TODO: if email already exxists, app crashes
+// TODO: same for username
+
 const HOST = "https://cepbruxelles.herokuapp.com";
 //const HOST = "http://localhost:3010";
 
 $(document).ready(function(){
-
-    for(var i = 0; i <= 30; i++){
-        $('.bg-bubbles').append('<li></li>');
+    if(getCookie("userid")){
+        window.location.replace("home.html");
     }
 
     let username = $('#username'),
@@ -37,8 +39,8 @@ $(document).ready(function(){
                 },function(res) {
                     $('.wrapper h1').html(`Welcome ${res.firstname} !!`);
                     $('.wrapper').addClass('form-success');
-                }).done(function() {
-                    setCookie("username", username.val());
+                }).done(function(res) {
+                    setCookie("userid", res.id);
                 window.location.replace("./home.html");
             }).fail(function() {
                     $('#label-username').empty().append("Invalid username or password.");
@@ -70,8 +72,6 @@ $(document).ready(function(){
         let isFormValid = validate(registerFields);
         if(isFormValid){
             $('form').fadeOut(500);
-            $('.wrapper h1').html(`Coming Soon !!`);
-            $('.wrapper').addClass('form-success');
             $.post( `${HOST}/api/users`,
                 {
                     "username": username.val(),
@@ -80,17 +80,24 @@ $(document).ready(function(){
                     "lastname": lastname.val(),
                     "email": email.val()
                 },function(res) {
-                    $('.wrapper h1').html(`Welcome ${res.firstname} !!`);
-                    $('.wrapper').addClass('form-success');
-                }).done(function(res) {
-                // TODO: Set cookies and open home page
-                setCookie("userid", res.id);
-                window.location.replace("./home.html");
-            }).fail(function(res) {
+                    $.post( `${HOST}/api/auth/`,
+                        {
+                            "username": username.val(),
+                            "password": password.val()
+                        },function(res) {
+                            $('.wrapper h1').html(`Welcome ${res.firstname} !!`);
+                            $('.wrapper').addClass('form-success');
+
+                            setCookie("userid", res.id);
+                            window.location.replace("./home.html");
+                        }).done(function(res) {
+                    }).fail(function(res) {
+                        $('#login-form').hide();
+                        // TODO: Alert the user properly
+                    });
+                }).fail(function(res) {
                     $('#login-form').hide();
                     // TODO: Alert the user properly
-                }).always(function() {
-                    // TODO: Refresh a few elements or something idk
                 });
         } else {
             // TODO: Send information for server-side validation

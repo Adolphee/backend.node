@@ -78,6 +78,12 @@ form {
     position: relative;
     z-index: 2;
 }
+
+.container {
+    z-index: 3;
+}
+
+
 form input {
     appearance: none;
     outline: 0;
@@ -253,4 +259,18 @@ form label {
 .btn {
     font-weight: 300;
     font-size: 18px;
+}
+
+.socialmedia a {
+    font-weight: 300;
+    font-size: 30px;
+    z-index: 2;
+    color: white;
+}
+
+.socialmedia a:hover {
+    font-weight: 300;
+    font-size: 30px;
+    z-index: 2;
+    color: #05e9e9;
 }

@@ -1168,4 +1168,9 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   color: red;
 }
 
+.fh5co-footer ul {
+  font-weight: 300;
+  font-size: 30px;
+}
+
 /*# sourceMappingURL=style.css.map */
