@@ -8,8 +8,8 @@ $(document).ajaxStart(() => {
 // TODO: if email already exxists, app crashes
 // TODO: same for username
 
-const HOST = "https://cepbruxelles.herokuapp.com";
-//const HOST = "http://localhost:3010";
+//const HOST = "https://cepbruxelles.herokuapp.com";
+const HOST = "http://localhost:3010";
 
 $(document).ready(function(){
     if(getCookie("userid")){
